@@ -1,0 +1,29 @@
+{
+  "name": "squareshuffle",
+  "version": "0.1.0",
+  "description": "Revisit tool, shuffles squares of an image around a la a slider puzzle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/revisitors/squareshuffle.git"
+  },
+  "keywords": [
+    "revisitors",
+    "image",
+    "shuffle"
+  ],
+  "author": "Todd Page",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/revisitors/squareshuffle/issues"
+  },
+  "homepage": "https://github.com/revisitors/squareshuffle",
+  "dependencies": {
+    "body-parser": "^1.6.2",
+    "data-uri-to-buffer": "0.0.3",
+    "express": "^4.8.2"
+  }
+}
