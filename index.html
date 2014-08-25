@@ -1,9 +1,51 @@
-*******
- 0  -
-  .)
- """"
-""^^""
-""""""
-
-Hey.
-
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Shuff Shuff Shuffle
+    </title>
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <div class="shuff">Let's shuffle.</div>
+    <form action="/service" method="post" accept-charset="utf-8">
+      <input type="file" name="file" id="file" value=""/>
+      <p>
+	<button class="submit" type="submit">Yes, lets.</button>
+      </p>
+    </form>
+    <script>
+      var img = document.createElement('img');
+      var payload = {content:{},meta:{}};
+      document.querySelector('.submit').addEventListener('click', function(e) {
+        e.preventDefault();
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+          if(this.responseText) {
+            img.src = JSON.parse(this.responseText).content.data;
+          }
+        }
+      
+        xhr.open('POST', '/service');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        if(payload.content.data) {
+         xhr.send(JSON.stringify(payload));
+        }
+      });
+      document.querySelector('input[type=file]').addEventListener('change', function(e) {
+        var reader = new FileReader();
+        reader.onloadend = function() {
+          document.querySelector('.shuff').appendChild(img);
+          img.src = reader.result;
+          payload.content.type = e.target.files[0].type;
+          payload.content.data = reader.result;
+        }
+        if (e.target.files[0].type.indexOf('image') !== 0) {
+          alert('Shut it down.  Images plz');
+        } else {
+          reader.readAsDataURL(e.target.files[0]);
+        }
+      });
+    </script>
+  </body>
+</html>
